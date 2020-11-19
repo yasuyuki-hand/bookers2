@@ -1,0 +1,72 @@
+
+      <div class="container">
+
+
+        <p id="notice"></p>
+
+        <div class="row">
+  
+<div class="col-xs-3">
+    <h2>User info</h2>
+    <%= attachment_image_tag current_user, :profile_image, :fill, 100, 100, format: 'jpg' ,fallback:"no-image1.jpg"%>
+      <table class="table">
+      <tbody>
+        <tr>
+          
+        </tr> 
+      <tr>
+    	  <th>name</th>
+    	  <th><%= current_user.name %></th>
+      </tr>
+      <tr>
+    	  <th>introduction</th>
+    	  <th><%= current_user.introduction %></th>
+      </tr>
+    </tbody></table>
+
+    <div class="row">
+      <a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench" href="<%= edit_user_path(@user) %>"></a>
+    </div>
+
+    <h2>New book</h2>
+    <%= form_for @book do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <div class="field row">
+      <%= f.label :Title %>
+      <%= f.text_field :title, class: "form-control"%>
+    </div>
+    <div class="field row">
+      <%= f.label :Opinion %>
+      <%= f.text_area :body, class: "form-control"%>
+    </div>
+    <%= f.submit "Create Book", class: "btn btn-block btn-primary mb-5"%>
+    <% end %>
+  </div>
+
+  <div class="col-xs-9">
+    <h2>Users</h2>
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg' ,fallback:"no-image.jpg"%><br></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Show", user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  </div>
+
+</div>
+      </div>
