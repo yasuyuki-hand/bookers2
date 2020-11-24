@@ -5,6 +5,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     @users = User.all
     @book = Book.new
     @books = Book.all
+    @favorite = Favorite.new
   end
   
   def new
@@ -32,6 +33,8 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     @book = Book.find(params[:id])
     @user = @book.user
     @book_new = Book.new
+    @book_comment = BookComment.new
+    
   end
   
   def edit
